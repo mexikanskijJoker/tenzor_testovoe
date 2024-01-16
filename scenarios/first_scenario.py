@@ -1,17 +1,10 @@
 import logging
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import configs.common as common
 import configs.config_scenarios as config
-
-
-class BasePage:
-    """Базовый класс страницы"""
-
-    def __init__(self, driver: WebDriver) -> None:
-        self.driver = driver
+from scenarios.base import BasePage
 
 
 class AboutPage(BasePage):
