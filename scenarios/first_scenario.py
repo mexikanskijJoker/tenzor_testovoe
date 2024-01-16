@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
 import configs.common as common
 import configs.config_scenarios as config
 
@@ -134,24 +133,3 @@ class MainPage(BasePage):
 
         except Exception as e:
             logging.error(e)
-
-
-# def run():
-#     chromeOptions = Options()
-#     chromeOptions.add_argument(common.DRIVER_OPTION)
-#     driver = webdriver.Chrome(options=chromeOptions)
-#     driver.get(common.SBIS_URL)
-
-#     try:
-#         main_page = MainPage(driver)
-#         contacts_page = main_page.go_to_contacts()
-#         tensor_page = contacts_page.click_tensor_banner()
-#         contacts_page.switch_to_tensor_page()
-#         print("Отображение блока силы", tensor_page.is_power_section_present())
-#         about_page = tensor_page.open_about_section()
-#         print("Отображение блока работы", about_page.is_work_section_present())
-#         print(about_page.are_photos_same_size())
-#     except Exception as e:
-#         logging.error(e)
-
-#     driver.quit()

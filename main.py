@@ -1,17 +1,11 @@
-import logging
-
-from configs.logging import FIRST_SCENARIO_OUTPUT_FILENAME, LOG_LEVEL
+from tests.driver import browser
+from tests.test_first_scenario import test_first_scenario
 from tests.test_second_scenario import test_second_scenario
 
 
 def main():
-    logging.basicConfig(
-        level=LOG_LEVEL,
-        filename=FIRST_SCENARIO_OUTPUT_FILENAME,
-        filemode="a",
-        format="%(asctime)s %(levelname)s %(message)s",
-    )
-    test_second_scenario()
+    test_first_scenario(browser())
+    test_second_scenario(browser())
 
 
 if __name__ == "__main__":

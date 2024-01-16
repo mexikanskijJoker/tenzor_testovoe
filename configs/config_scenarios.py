@@ -13,5 +13,6 @@ SECOND_SCENARIO = {
     "TARGET_REGION_ELEMENT_XPATH": '//*[@id="popup"]/div[2]/div/div/div/div/div[2]/div/ul/li[43]/span',
     "TARGET_TITLE_PART": "Камчатский край",
     "TARGET_URL_PART": "41-kamchatskij-kraj",
+    "CURRENT_REGION_NAME": "Свердловская обл.",
 }
 """Набор параметров для второго сценария"""

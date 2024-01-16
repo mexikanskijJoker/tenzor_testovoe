@@ -128,21 +128,3 @@ class MainPage(BasePage):
 
         except Exception as e:
             logging.error(e)
-
-
-# def run():
-#     chromeOptions = Options()
-#     chromeOptions.add_argument(common.DRIVER_OPTION)
-#     driver = webdriver.Chrome(options=chromeOptions)
-#     driver.get(common.SBIS_URL)
-
-#     main_page = MainPage(driver)
-#     contacts_page = main_page.go_to_contacts()
-#     print("Название региона", contacts_page.check_region_name())
-#     print("Список партнёров", contacts_page.is_partners_list_exist())
-#     contacts_page.get_partners_list_text()
-#     contacts_page.change_region()
-#     print("Название региона", contacts_page.check_region_name())
-#     print("Урл и тайтл", contacts_page.check_url_and_title())
-
-#     driver.quit()
