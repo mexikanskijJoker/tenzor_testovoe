@@ -3,3 +3,6 @@ SBIS_URL = "https://sbis.ru/"
 
 CONTACTS = "Контакты"
 """Контакты"""
+
+DRIVER_OPTION = "--start-maximized"
+"""Опция для увеличение окна браузера"""
