@@ -32,9 +32,9 @@ class AboutPage(BasePage):
         return all(photo == photos_size[0] for photo in photos_size)
 
     def is_work_section_present(self) -> bool:
-        """Проверяет наличие блока 'Работаем' на странице"""
+        """Проверяет наличие на странице блока 'Работаем'"""
         try:
-            work_section = WebDriverWait(self.driver, 5).until(
+            work_section = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located(
                     (By.XPATH, config.FIRST_SCENARIO["WORK_BLOCK_XPATH"])
                 )
@@ -52,7 +52,7 @@ class TensorPage(BasePage):
     def is_power_section_present(self) -> bool:
         """Проверяет наличие блока 'Сила в людях' на странице"""
         try:
-            power_section = WebDriverWait(self.driver, 5).until(
+            power_section = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located(
                     (
                         By.XPATH,
@@ -69,7 +69,7 @@ class TensorPage(BasePage):
     def open_about_section(self) -> AboutPage:
         """Выполняет поиск ссылки на страницу '/about'"""
         try:
-            about_section_button = WebDriverWait(self.driver, 10).until(
+            about_section_button = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located(
                     (By.CSS_SELECTOR, config.FIRST_SCENARIO["ABOUT_BLOCK_SELECTOR"])
                 )
@@ -89,7 +89,7 @@ class ContactsPage(BasePage):
     def click_tensor_banner(self) -> TensorPage:
         """Выполняет поиск баннера 'Тензора' и, кликая на него, возвращает страницу https://tensor.ru/"""
         try:
-            tensor_banner = WebDriverWait(self.driver, 5).until(
+            tensor_banner = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located(
                     (By.CSS_SELECTOR, config.FIRST_SCENARIO["TENSOR_BLOCK_SELECTOR"])
                 )
@@ -113,7 +113,7 @@ class MainPage(BasePage):
     def go_to_contacts(self) -> ContactsPage:
         """Возвращает страницу Контакты"""
         try:
-            contacts_link = WebDriverWait(self.driver, 5).until(
+            contacts_link = WebDriverWait(self.driver, 15).until(
                 EC.presence_of_element_located((By.LINK_TEXT, common.CONTACTS))
             )
 

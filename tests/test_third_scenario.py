@@ -18,5 +18,5 @@ def test_third_scenario(browser):
     # Проверка, скачался ли файл
     assert utils.is_file_downloaded()
 
-    # Проверка на совпадение размеров скачанного файла с указанными на сайте
-    assert utils.get_downloaded_file_size() == 7.02
+    # Проверка на совпадение размера скачанного файла с указанными на сайте
+    assert utils.get_downloaded_file_size() == download_page.get_expected_file_size()

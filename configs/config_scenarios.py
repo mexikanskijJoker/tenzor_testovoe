@@ -8,7 +8,7 @@ FIRST_SCENARIO = {
 """Набор параметров для первого сценария"""
 
 SECOND_SCENARIO = {
-    "CURRENT_REGION_NAME": "Свердловская обл.",
+    "DEFAULT_REGION_NAME": "Свердловская обл.",
     "PARTNERS_LIST_ELEMENT_XPATH": '//*[@id="contacts_list"]/div/div[2]/div[2]/div/div[2]/div[1]/div[3]',
     "REGION_ELEMENT_XPATH": '//*[@id="container"]/div[1]/div/div[3]/div[2]/div[1]/div/div[2]/span/span',
     "TARGET_REGION_ELEMENT_XPATH": '//*[@id="popup"]/div[2]/div/div/div/div/div[2]/div/ul/li[43]/span',

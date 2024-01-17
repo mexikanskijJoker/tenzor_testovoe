@@ -19,7 +19,7 @@ class ContactsPage(BasePage):
         try:
             region_name = self.get_current_region()
             region_name.click()
-            target_region = WebDriverWait(self.driver, 10).until(
+            target_region = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located(
                     (
                         By.XPATH,
@@ -61,7 +61,7 @@ class ContactsPage(BasePage):
     def get_current_region(self) -> WebElement:
         """Возвращает элемент, содержащий выбранный регион(по умолчанию текущий, 66)"""
         try:
-            region = WebDriverWait(self.driver, 5).until(
+            region = WebDriverWait(self.driver, 15).until(
                 EC.presence_of_element_located(
                     (By.XPATH, config.SECOND_SCENARIO["REGION_ELEMENT_XPATH"])
                 )
@@ -75,7 +75,7 @@ class ContactsPage(BasePage):
     def get_partners_list(self) -> WebElement:
         """Возвращает элемент, содержащий инфу о партнёрах"""
         try:
-            partners_list = WebDriverWait(self.driver, 5).until(
+            partners_list = WebDriverWait(self.driver, 15).until(
                 EC.presence_of_element_located(
                     (By.XPATH, config.SECOND_SCENARIO["PARTNERS_LIST_ELEMENT_XPATH"])
                 )
@@ -113,7 +113,7 @@ class MainPage(BasePage):
     def go_to_contacts(self) -> ContactsPage:
         """Возвращает страницу Контакты"""
         try:
-            contacts_link = WebDriverWait(self.driver, 5).until(
+            contacts_link = WebDriverWait(self.driver, 15).until(
                 EC.presence_of_element_located((By.LINK_TEXT, common.CONTACTS))
             )
             contacts_link.click()

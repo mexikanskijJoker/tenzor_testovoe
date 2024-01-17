@@ -1,5 +1,6 @@
 import logging
 import os
+import re
 import time
 
 from selenium.webdriver.common.by import By
@@ -45,7 +46,7 @@ class DownloadPage(BasePage):
             )
             download_button.click()
 
-            wait = WebDriverWait(self.driver, 10)
+            wait = WebDriverWait(self.driver, 50)
             wait.until(
                 lambda driver: any(
                     filename.endswith(".exe")
@@ -56,6 +57,22 @@ class DownloadPage(BasePage):
         except Exception as e:
             logging.error(e)
 
+    def get_expected_file_size(self) -> float:
+        """Возвращает ожидаемый размер установщика в МБ"""
+
+        try:
+            installer_elem = self.driver.find_element(
+                By.XPATH,
+                config.THIRD_SCENARIO["INSTALLER_LINK_XPATH"],
+            ).text
+
+        except Exception as e:
+            logging.error(e)
+
+        file_size = float(re.findall(r"\d+.\d+", installer_elem)[0])
+
+        return file_size
+
 
 class MainPage(BasePage):
     """Главная страница https://sbis.ru/"""
@@ -64,7 +81,7 @@ class MainPage(BasePage):
         """Установка СБИС"""
 
         try:
-            download_sbis_link = WebDriverWait(self.driver, 5).until(
+            download_sbis_link = WebDriverWait(self.driver, 15).until(
                 EC.presence_of_element_located(
                     (
                         By.CSS_SELECTOR,

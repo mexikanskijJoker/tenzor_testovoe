@@ -8,17 +8,19 @@ import configs.config_scenarios as config
 
 def create_folder() -> None:
     """Создаёт папку для загрузки плагина"""
+
     return os.mkdir("tenzor_downloads")
 
 
 def create_or_remove_folder() -> None:
     """Создаёт папку для загрузки плагина или удаляет её в зависимости от того, существует ли уже такая папка в корне проекта"""
+
     root_path = os.getcwd()
 
     folder_path = os.path.join(root_path, common.DOWNLOAD_FOLDER)
 
     if os.path.isdir(folder_path):
-        # Происходит удаление папки с установщика после всех проверок
+        # Происходит удаление папки с установщиком
         remove_folder()
 
     # Происходит создание папки для загрузки установщика
@@ -26,7 +28,7 @@ def create_or_remove_folder() -> None:
 
 
 def get_downloaded_file_size() -> float:
-    """Возвращает размер файла в байтах"""
+    """Возвращает размер скачанного установщика в МБ"""
 
     try:
         file = os.listdir(common.DOWNLOAD_FOLDER)[0]
@@ -43,7 +45,9 @@ def get_downloaded_file_size() -> float:
     except Exception as e:
         logging.error(e)
 
-    return round(file_size / config.THIRD_SCENARIO["BYTES_IN_MB"], 2)
+    downloaded_file_size = round(file_size / config.THIRD_SCENARIO["BYTES_IN_MB"], 2)
+
+    return downloaded_file_size
 
 
 def is_file_downloaded() -> bool:
@@ -63,5 +67,6 @@ def is_file_downloaded() -> bool:
 
 
 def remove_folder() -> None:
-    """Удаление папку для загрузки плагина"""
+    """Удаление папки для загрузки плагина"""
+
     return shutil.rmtree("tenzor_downloads")
