@@ -1,4 +1,5 @@
 from scenarios.third_scenario import MainPage
+import utils.utils as utils
 
 
 def test_third_scenario(browser):
@@ -13,7 +14,7 @@ def test_third_scenario(browser):
     download_page.click_download_file()
 
     # Проверка, скачался ли файл
-    assert download_page.is_file_downloaded()
+    assert utils.is_file_downloaded()
 
     # Проверка на совпадение размеров скачанного файла с указанными на сайте
-    assert download_page.get_downloaded_file_size() == 7.02
+    assert utils.get_downloaded_file_size() == 7.02

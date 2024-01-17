@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "scenarios package"
+version = "0.1.0"
+description = "Required libs for project"
+authors = ["mexikanskijJoker <enigma.51@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pytest = "^7.4.4"
+selenium = "^4.16.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

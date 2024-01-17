@@ -1,5 +1,6 @@
 import logging
 import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
@@ -27,7 +28,7 @@ class ContactsPage(BasePage):
                 )
             )
             target_region.click()
-            time.sleep(1)
+            time.sleep(config.THIRD_SCENARIO["BACKOFF_FACTOR"])
 
         except Exception as e:
             logging.error(e)
@@ -37,10 +38,10 @@ class ContactsPage(BasePage):
         try:
             region_name = self.get_current_region()
 
-            return region_name.text
-
         except Exception as e:
             logging.error(e)
+
+        return region_name.text
 
     def check_url_and_title(self) -> tuple[bool, bool]:
         """Проверка url-адрес и title сайта на наличие инфы об указанном регионе"""
@@ -52,10 +53,10 @@ class ContactsPage(BasePage):
                 config.SECOND_SCENARIO["TARGET_TITLE_PART"] in current_title
             )
 
-            return is_url_correct, is_title_correct
-
         except Exception as e:
             logging.error(e)
+
+        return is_url_correct, is_title_correct
 
     def get_current_region(self) -> WebElement:
         """Возвращает элемент, содержащий выбранный регион(по умолчанию текущий, 66)"""
@@ -66,10 +67,10 @@ class ContactsPage(BasePage):
                 )
             )
 
-            return region
-
         except Exception as e:
             logging.error(e)
+
+        return region
 
     def get_partners_list(self) -> WebElement:
         """Возвращает элемент, содержащий инфу о партнёрах"""
@@ -80,30 +81,30 @@ class ContactsPage(BasePage):
                 )
             )
 
-            return partners_list
-
         except Exception as e:
             logging.error(e)
+
+        return partners_list
 
     def get_partners_list_text(self) -> str:
         """Возвращает содержание элемента о партнёрах"""
         try:
             partners_list = self.get_partners_list()
 
-            return partners_list.text
-
         except Exception as e:
             logging.error(e)
+
+        return partners_list.text
 
     def is_partners_list_exist(self) -> bool:
         """Возвращает True, в случае если на странице отображается инфа о партнёрах"""
         try:
             partners_list = self.get_partners_list()
 
-            return partners_list.is_displayed()
-
         except Exception as e:
             logging.error(e)
+
+        return partners_list.is_displayed()
 
 
 class MainPage(BasePage):
@@ -117,7 +118,7 @@ class MainPage(BasePage):
             )
             contacts_link.click()
 
-            return ContactsPage(self.driver)
-
         except Exception as e:
             logging.error(e)
+
+        return ContactsPage(self.driver)

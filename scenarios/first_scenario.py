@@ -1,7 +1,9 @@
 import logging
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+
 import configs.common as common
 import configs.config_scenarios as config
 from scenarios.base import BasePage
@@ -12,6 +14,7 @@ class AboutPage(BasePage):
 
     def are_photos_same_size(self) -> bool:
         """Проверка изображений на совпадение по размерам в блоке 'Работаем'"""
+
         try:
             photos = (
                 WebDriverWait(self.driver, 5)
@@ -24,16 +27,15 @@ class AboutPage(BasePage):
                     By.CLASS_NAME, config.FIRST_SCENARIO["IMAGES_BLOCK_CLASSNAME"]
                 )
             )
+
             photos_size = list(map(lambda photo: photo.size, photos))
 
-            is_photos_sizes_equal = all(
-                photo == photos_size[0] for photo in photos_size
-            )
-
-            return is_photos_sizes_equal
+            return all(photo == photos_size[0] for photo in photos_size)
 
         except Exception as e:
             logging.error(e)
+
+        return False
 
     def is_work_section_present(self) -> bool:
         """Проверяет наличие блока 'Работаем' на странице"""
@@ -44,10 +46,10 @@ class AboutPage(BasePage):
                 )
             )
 
-            return work_section.is_displayed()
-
         except Exception as e:
             logging.error(e)
+
+        return work_section.is_displayed()
 
 
 class TensorPage(BasePage):
@@ -64,10 +66,11 @@ class TensorPage(BasePage):
                     )
                 )
             )
-            return power_section.is_displayed()
 
         except Exception as e:
             logging.error(e)
+
+        return power_section.is_displayed()
 
     def open_about_section(self) -> AboutPage:
         """Выполняет поиск ссылки на страницу '/about'"""
@@ -80,10 +83,10 @@ class TensorPage(BasePage):
 
             about_section_button.click()
 
-            return AboutPage(self.driver)
-
         except Exception as e:
             logging.error(e)
+
+        return AboutPage(self.driver)
 
 
 class ContactsPage(BasePage):
@@ -100,10 +103,10 @@ class ContactsPage(BasePage):
 
             tensor_banner.click()
 
-            return TensorPage(self.driver)
-
         except Exception as e:
             logging.error(e)
+
+        return TensorPage(self.driver)
 
     def switch_to_tensor_page(self) -> None:
         """Открывает страницу https://tensor.ru/ в новом окне"""
@@ -122,7 +125,7 @@ class MainPage(BasePage):
 
             contacts_link.click()
 
-            return ContactsPage(self.driver)
-
         except Exception as e:
             logging.error(e)
+
+        return ContactsPage(self.driver)

@@ -1,4 +1,6 @@
 import os
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -11,24 +13,24 @@ from scenarios.base import BasePage
 class DownloadPage(BasePage):
     """Страница загрузки СБИС"""
 
-    def click_sbis_plugin(self):
+    def click_sbis_plugin(self) -> None:
         """Клик на 'СБИС Плагин'"""
 
         plugin_button = self.driver.find_element(
             By.CSS_SELECTOR, config.THIRD_SCENARIO["PLUGIN_BUTTON_SELECTOR"]
         )
-        while True:
+        for i in range(1, 10):
             plugin_button.click()
             elem = self.driver.find_element(
                 By.XPATH,
                 config.THIRD_SCENARIO["INSTALLER_LINK_XPATH"],
             ).text
             if not elem:
-                pass
+                time.sleep(config.THIRD_SCENARIO["BACKOFF_FACTOR"] * (2 ** (i - 1)))
             else:
                 break
 
-    def click_download_file(self):
+    def click_download_file(self) -> None:
         """Клик на ссылку скачивание exe файла установщика"""
 
         download_button = self.driver.find_element(
@@ -44,26 +46,6 @@ class DownloadPage(BasePage):
                 for filename in os.listdir(common.DOWNLOAD_FOLDER)
             )
         )
-
-    def is_file_downloaded(self):
-        """Скачан ли файл установщика"""
-
-        is_exe_file_in_dir = [
-            filename.endswith(".exe") for filename in os.listdir(common.DOWNLOAD_FOLDER)
-        ]
-
-        if len(is_exe_file_in_dir) != 0:
-            return True
-
-        return False
-
-    def get_downloaded_file_size(self):
-        """Возвращает размер файла в байтах"""
-
-        file = os.listdir(common.DOWNLOAD_FOLDER)[0]
-        file_size = os.path.getsize(common.DOWNLOAD_FOLDER + "/" + file)
-
-        return round(file_size / 1048576, 2)
 
 
 class MainPage(BasePage):
