@@ -1,5 +1,5 @@
-from scenarios.third_scenario import MainPage
 import utils.utils as utils
+from scenarios.third_scenario import MainPage
 
 
 def test_third_scenario(browser):
