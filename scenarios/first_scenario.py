@@ -16,7 +16,7 @@ class AboutPage(BasePage):
         """Проверка изображений на совпадение по размерам в блоке 'Работаем'"""
 
         photos = (
-            WebDriverWait(self.driver, 5)
+            WebDriverWait(self.driver, 15)
             .until(
                 EC.visibility_of_element_located(
                     (By.CLASS_NAME, config.FIRST_SCENARIO["IMAGES_BLOCK_CLASSNAME"])
