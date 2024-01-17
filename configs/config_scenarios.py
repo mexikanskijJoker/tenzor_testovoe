@@ -16,3 +16,11 @@ SECOND_SCENARIO = {
     "CURRENT_REGION_NAME": "Свердловская обл.",
 }
 """Набор параметров для второго сценария"""
+
+THIRD_SCENARIO = {
+    "INSTALLER_LINK_XPATH": "/html/body/div[1]/div[2]/div[1]/div/div[1]/div/div/div/div[2]/div/div[2]/div/div/div[2]/div[1]/div[2]/div[2]/div/a",
+    "PLUGIN_BUTTON_SELECTOR": 'div[data-id="plugin"]',
+    "DOWNLOAD_SBIS_LINK_SELECTOR": 'a[href="/download?tab=ereport&innerTab=ereport25"]',
+    "CLICK_ACTION": "arguments[0].click();",
+}
+"""Набор параметров для третьего сценария"""
