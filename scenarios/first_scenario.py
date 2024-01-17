@@ -15,27 +15,21 @@ class AboutPage(BasePage):
     def are_photos_same_size(self) -> bool:
         """Проверка изображений на совпадение по размерам в блоке 'Работаем'"""
 
-        try:
-            photos = (
-                WebDriverWait(self.driver, 5)
-                .until(
-                    EC.visibility_of_element_located(
-                        (By.CLASS_NAME, config.FIRST_SCENARIO["IMAGES_BLOCK_CLASSNAME"])
-                    )
-                )
-                .find_elements(
-                    By.CLASS_NAME, config.FIRST_SCENARIO["IMAGES_BLOCK_CLASSNAME"]
+        photos = (
+            WebDriverWait(self.driver, 5)
+            .until(
+                EC.visibility_of_element_located(
+                    (By.CLASS_NAME, config.FIRST_SCENARIO["IMAGES_BLOCK_CLASSNAME"])
                 )
             )
+            .find_elements(
+                By.CLASS_NAME, config.FIRST_SCENARIO["IMAGES_BLOCK_CLASSNAME"]
+            )
+        )
 
-            photos_size = list(map(lambda photo: photo.size, photos))
+        photos_size = list(map(lambda photo: photo.size, photos))
 
-            return all(photo == photos_size[0] for photo in photos_size)
-
-        except Exception as e:
-            logging.error(e)
-
-        return False
+        return all(photo == photos_size[0] for photo in photos_size)
 
     def is_work_section_present(self) -> bool:
         """Проверяет наличие блока 'Работаем' на странице"""
@@ -75,7 +69,7 @@ class TensorPage(BasePage):
     def open_about_section(self) -> AboutPage:
         """Выполняет поиск ссылки на страницу '/about'"""
         try:
-            about_section_button = WebDriverWait(self.driver, 5).until(
+            about_section_button = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located(
                     (By.CSS_SELECTOR, config.FIRST_SCENARIO["ABOUT_BLOCK_SELECTOR"])
                 )

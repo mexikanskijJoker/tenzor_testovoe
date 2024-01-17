@@ -5,6 +5,8 @@ import utils.utils as utils
 def test_third_scenario(browser):
     """Тест для третьего сценария"""
 
+    utils.create_or_remove_folder()
+
     main_page = MainPage(browser)
 
     download_page = main_page.download_sbis()
