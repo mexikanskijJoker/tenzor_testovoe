@@ -9,7 +9,7 @@ import configs.config_scenarios as config
 def create_folder() -> None:
     """Создаёт папку для загрузки плагина"""
 
-    return os.mkdir("tenzor_downloads")
+    return os.mkdir(common.DOWNLOAD_FOLDER)
 
 
 def create_or_remove_folder() -> None:
@@ -25,6 +25,8 @@ def create_or_remove_folder() -> None:
 
     # Происходит создание папки для загрузки установщика
     create_folder()
+
+    return
 
 
 def get_downloaded_file_size() -> float:
@@ -69,4 +71,4 @@ def is_file_downloaded() -> bool:
 def remove_folder() -> None:
     """Удаление папки для загрузки плагина"""
 
-    return shutil.rmtree("tenzor_downloads")
+    return shutil.rmtree(common.DOWNLOAD_FOLDER)

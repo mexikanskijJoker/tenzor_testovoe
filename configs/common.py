@@ -3,8 +3,11 @@ import os
 CONTACTS = "Контакты"
 """Контакты"""
 
-DOWNLOAD_FOLDER = "tenzor_downloads"
+DOWNLOAD_FOLDER = "plugin"
 """Папка для загрузки установщика"""
+
+DEFAULT_TIMEOUT = 15
+"""Задержка"""
 
 SBIS_URL = "https://sbis.ru/"
 """URL-адрес СБИС"""

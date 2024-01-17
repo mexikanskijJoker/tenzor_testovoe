@@ -16,7 +16,7 @@ class AboutPage(BasePage):
         """Проверка изображений на совпадение по размерам в блоке 'Работаем'"""
 
         photos = (
-            WebDriverWait(self.driver, 15)
+            WebDriverWait(self.driver, common.DEFAULT_TIMEOUT)
             .until(
                 EC.visibility_of_element_located(
                     (By.CLASS_NAME, config.FIRST_SCENARIO["IMAGES_BLOCK_CLASSNAME"])
@@ -34,7 +34,7 @@ class AboutPage(BasePage):
     def is_work_section_present(self) -> bool:
         """Проверяет наличие на странице блока 'Работаем'"""
         try:
-            work_section = WebDriverWait(self.driver, 15).until(
+            work_section = WebDriverWait(self.driver, common.DEFAULT_TIMEOUT).until(
                 EC.visibility_of_element_located(
                     (By.XPATH, config.FIRST_SCENARIO["WORK_BLOCK_XPATH"])
                 )
@@ -52,7 +52,7 @@ class TensorPage(BasePage):
     def is_power_section_present(self) -> bool:
         """Проверяет наличие блока 'Сила в людях' на странице"""
         try:
-            power_section = WebDriverWait(self.driver, 15).until(
+            power_section = WebDriverWait(self.driver, common.DEFAULT_TIMEOUT).until(
                 EC.visibility_of_element_located(
                     (
                         By.XPATH,
@@ -69,12 +69,13 @@ class TensorPage(BasePage):
     def open_about_section(self) -> AboutPage:
         """Выполняет поиск ссылки на страницу '/about'"""
         try:
-            about_section_button = WebDriverWait(self.driver, 15).until(
+            about_section_button = WebDriverWait(
+                self.driver, common.DEFAULT_TIMEOUT
+            ).until(
                 EC.visibility_of_element_located(
                     (By.CSS_SELECTOR, config.FIRST_SCENARIO["ABOUT_BLOCK_SELECTOR"])
                 )
             )
-
             about_section_button.click()
 
         except Exception as e:
@@ -89,7 +90,7 @@ class ContactsPage(BasePage):
     def click_tensor_banner(self) -> TensorPage:
         """Выполняет поиск баннера 'Тензора' и, кликая на него, возвращает страницу https://tensor.ru/"""
         try:
-            tensor_banner = WebDriverWait(self.driver, 15).until(
+            tensor_banner = WebDriverWait(self.driver, common.DEFAULT_TIMEOUT).until(
                 EC.visibility_of_element_located(
                     (By.CSS_SELECTOR, config.FIRST_SCENARIO["TENSOR_BLOCK_SELECTOR"])
                 )
@@ -106,6 +107,8 @@ class ContactsPage(BasePage):
         """Открывает страницу https://tensor.ru/ в новом окне"""
         self.driver.switch_to.window(self.driver.window_handles[1])
 
+        return
+
 
 class MainPage(BasePage):
     """Стартовая страница https://sbis.ru/"""
@@ -113,7 +116,7 @@ class MainPage(BasePage):
     def go_to_contacts(self) -> ContactsPage:
         """Возвращает страницу Контакты"""
         try:
-            contacts_link = WebDriverWait(self.driver, 15).until(
+            contacts_link = WebDriverWait(self.driver, common.DEFAULT_TIMEOUT).until(
                 EC.presence_of_element_located((By.LINK_TEXT, common.CONTACTS))
             )
 

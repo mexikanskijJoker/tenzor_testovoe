@@ -36,6 +36,8 @@ class DownloadPage(BasePage):
         except Exception as e:
             logging.error(e)
 
+        return
+
     def click_download_file(self) -> None:
         """Клик на ссылку скачивание exe файла установщика"""
 
@@ -46,7 +48,7 @@ class DownloadPage(BasePage):
             )
             download_button.click()
 
-            wait = WebDriverWait(self.driver, 50)
+            wait = WebDriverWait(self.driver, common.DEFAULT_TIMEOUT)
             wait.until(
                 lambda driver: any(
                     filename.endswith(".exe")
@@ -56,6 +58,8 @@ class DownloadPage(BasePage):
 
         except Exception as e:
             logging.error(e)
+
+        return
 
     def get_expected_file_size(self) -> float:
         """Возвращает ожидаемый размер установщика в МБ"""
@@ -81,7 +85,9 @@ class MainPage(BasePage):
         """Установка СБИС"""
 
         try:
-            download_sbis_link = WebDriverWait(self.driver, 15).until(
+            download_sbis_link = WebDriverWait(
+                self.driver, common.DEFAULT_TIMEOUT
+            ).until(
                 EC.presence_of_element_located(
                     (
                         By.CSS_SELECTOR,
